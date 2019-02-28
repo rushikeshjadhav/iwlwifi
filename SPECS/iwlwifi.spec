@@ -1,8 +1,8 @@
 %define uname  %{kernel_version}
 %define module_dir updates
 
-Summary: Driver for hello-world
-Name: hello-world
+Summary: Driver for iwlwifi
+Name: iwlwifi
 Version: 1.0
 Release: %{?release}%{!?release:1}
 License: GPL
@@ -15,13 +15,13 @@ Requires(post): /usr/sbin/depmod
 Requires(postun): /usr/sbin/depmod
 
 %description
-hello-world Linux Device Driver source.
+iwlwifi Linux Device Driver source.
 
 %prep
 %setup -q -n %{name}-%{version}
 
 %build
-%{__make} -C /lib/modules/%{uname}/build M=$(pwd) modules
+%{__make} -C /lib/modules/%{uname}/build M=$(pwd) modules CONFIG_IWLWIFI=m
 
 %install
 %{__make} -C /lib/modules/%{uname}/build M=$(pwd) INSTALL_MOD_PATH=%{buildroot} INSTALL_MOD_DIR=%{module_dir} DEPMOD=/bin/true modules_install
@@ -49,5 +49,5 @@ find %{buildroot}/lib/modules/%{uname} -name "*.ko" -type f | xargs chmod u+x
 %doc
 
 %changelog
-* Sat Jan 26 2019 Rushikesh Jadhav <rushikesh7@gmail.com> - 1.0
-- Added example driver hello-world-1.0
+* Thu Feb 28 2019 Rushikesh Jadhav <rushikesh7@gmail.com> - 1.0
+- Added kernel driver iwlwifi

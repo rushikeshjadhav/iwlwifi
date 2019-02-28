@@ -3,15 +3,15 @@
 In order to build any driver yourself, go on your docker host and use follwing shell commands to build it:
 
 ```
-mkdir driver-hello-world
+mkdir driver-iwlwifi
 
-cd driver-hello-world
+cd driver-iwlwifi
 
 git clone https://github.com/xcp-ng/xcp-ng-build-env
 
-git clone https://github.com/xcp-ng-rpms/kernel-driver-template
+git clone https://github.com/rushikeshjadhav/iwlwifi
 
-chown 1000 ./kernel-driver-template/ -R
+chown 1000 ./iwlwifi/ -R
 
-./xcp-ng-build-env/run.py -b 7.6 --build-local kernel-driver-template/ --rm
+./xcp-ng-build-env/run.py -b 7.6 --build-local iwlwifi/ --rm
 ```
