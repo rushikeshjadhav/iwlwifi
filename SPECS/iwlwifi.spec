@@ -21,7 +21,7 @@ iwlwifi Linux Device Driver source.
 %setup -q -n %{name}-%{version}
 
 %build
-%{__make} -C /lib/modules/%{uname}/build M=$(pwd) modules CONFIG_IWLWIFI=m
+%{__make} -C /lib/modules/%{uname}/build M=$(pwd)
 
 %install
 %{__make} -C /lib/modules/%{uname}/build M=$(pwd) INSTALL_MOD_PATH=%{buildroot} INSTALL_MOD_DIR=%{module_dir} DEPMOD=/bin/true modules_install
@@ -34,7 +34,8 @@ find %{buildroot}/lib/modules/%{uname} -name "*.ko" -type f | xargs chmod u+x
 
 %post
 /sbin/depmod %{kernel_version}
-%{regenerate_initrd_post}
+#Enable regenerate_initrd_post if you want to include it during booting
+#%{regenerate_initrd_post}
 
 %postun
 /sbin/depmod %{kernel_version}
